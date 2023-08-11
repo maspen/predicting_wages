@@ -1,0 +1,12 @@
+I started this exercise by analyzing the data provided. I then proceeded to encode the categorical data (SOUTH SEX UNION RACE OCCUPATION SECTOR MARR) and ended up with a 534/24 matrix.
+
+I set X to be all columns except 'WAGE' and set y to 'WAGE'. After train_test_split, I started off with a very basic pipeline of a StandardScaler & LinearRegression which yielded a score of 0.38699631666233625.
+
+I continued by replacing the LinearRegression with Ridge and constructed a GridSearchCV with alpha values to try in the range 10^-5 to 10^5. From this, I was able to determine the optimal alpha value for Ridge: 73.90722033525775.
+
+In the next step, I instantiated Ridge with this alpha value and passed it as a constructor argument to TransformedTargetRegressor. I repeated the GridSearchCV step which yielded a best score of 0.2513691428009535.
+
+Building on the previous step, I added func=np.log & inverse_func=np.exp to the TransformedTargetRegressor constructor. Again, after GridSearchCV, the best score was 0.21597242359920615.
+
+Finally, using permutation_importance I was able to order the features that had the most to least relevance:
+
